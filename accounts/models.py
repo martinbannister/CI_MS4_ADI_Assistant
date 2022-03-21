@@ -14,7 +14,7 @@ class CustomUser(AbstractUser):
 
         __empty__ = ('Choose a subscription')
 
-    subscription = models.CharField(max_length=4, choices=Subscription.choices)
+    subscription = models.IntegerField(choices=Subscription.choices)
     sub_duration = models.IntegerField(null=False, blank=False, default=0)
     sub_start_date = models.DateTimeField(null=False, blank=False, default=timezone.now)
     sub_end_date = models.DateTimeField(null=False, blank=False, default=timezone.now)
