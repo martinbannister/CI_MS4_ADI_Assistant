@@ -6,7 +6,7 @@ from django.utils import timezone
 
 class CustomUser(AbstractUser):
 
-    class Subscription(models.TextChoices):
+    class Subscription(models.IntegerChoices):
         FREE = 0, _('Complimentary')
         PDI = 1, _('Trainee (6 month)')
         ADI = 2, _('Driving Instuctor (monthly)')
