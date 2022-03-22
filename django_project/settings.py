@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'accounts.apps.AccountsConfig',
+    'customers.apps.CustomersConfig'
 ]
 
 MIDDLEWARE = [
