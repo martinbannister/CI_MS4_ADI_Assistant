@@ -14,14 +14,20 @@ class CustomUser(AbstractUser):
 
         __empty__ = ('Choose a subscription')
 
-    subscription = models.IntegerField(choices=Subscription.choices)
+    subscription = models.IntegerField(choices=Subscription.choices, default=0)
     sub_duration = models.IntegerField(null=False, blank=False, default=0)
-    sub_start_date = models.DateTimeField(null=False, blank=False, default=timezone.now)
-    sub_end_date = models.DateTimeField(null=False, blank=False, default=timezone.now)
+    sub_start_date = models.DateTimeField(null=False, blank=False,
+                                          default=timezone.now)
+    sub_end_date = models.DateTimeField(null=False, blank=False,
+                                        default=timezone.now)
 
-    address1 = models.CharField(max_length=80, null=False, blank=False, default='7 Sundorne')
+    address1 = models.CharField(max_length=80, null=False, blank=False,
+                                default='7 Sundorne')
     address2 = models.CharField(max_length=80, null=True, blank=True)
-    town = models.CharField(max_length=40, null=False, blank=False, default='Wrecsam')
+    town = models.CharField(max_length=40, null=False, blank=False,
+                            default='Wrecsam')
     county = models.CharField(max_length=80, null=True, blank=True)
-    postcode = models.CharField(max_length=20, null=True, blank=False, default='LL13 0EB')
-    country = models.CharField(max_length=40, null=False, blank=False, default='UK')
+    postcode = models.CharField(max_length=20, null=True, blank=False,
+                                default='LL13 0EB')
+    country = models.CharField(max_length=40, null=False, blank=False,
+                               default='UK')
