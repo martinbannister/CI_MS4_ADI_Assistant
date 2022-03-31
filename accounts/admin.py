@@ -12,50 +12,17 @@ class CustomUserAdmin(UserAdmin):
     list_display = [
         'email',
         'username',
-        'subscription',
-        'sub_duration',
-        'sub_start_date',
-        'sub_end_date',
-        'address1',
-        'address2',
-        'town',
-        'county',
-        'postcode',
-        'country',
+        'account_type',
         'is_staff',
     ]
     fieldsets = UserAdmin.fieldsets + (
         (None, {
             "fields": (
-                'subscription',
-                'sub_duration',
-                'sub_start_date',
-                'sub_end_date',
-                'address1',
-                'address2',
-                'town',
-                'county',
-                'postcode',
-                'country',
+                'account_type',
             ),
         }),
     )
-    add_fieldsets = UserAdmin.fieldsets + (
-        (None, {
-            "fields": (
-                'subscription',
-                'sub_duration',
-                'sub_start_date',
-                'sub_end_date',
-                'address1',
-                'address2',
-                'town',
-                'county',
-                'postcode',
-                'country',
-            ),
-        }),
-    )
-    
+    add_fieldsets = UserAdmin.fieldsets
+
 
 admin.site.register(CustomUser, CustomUserAdmin)
