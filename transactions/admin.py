@@ -40,4 +40,4 @@ class AccountingCodeAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Transaction, TransactionAdmin)
-admin.site.register(AccountingCode)
+admin.site.register(AccountingCode, AccountingCodeAdmin)
