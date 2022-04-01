@@ -1,26 +1,34 @@
 from decimal import Decimal
 from django.core import validators
 from django.utils.translation import gettext_lazy as _
+import uuid
 from django.conf import settings
 from django.db import models
 
 
 class Transaction(models.Model):
+    transaction_uuid = models.CharField(
+                                        max_length=32,
+                                        null=False,
+                                        editable=False
+                                       )
     owner = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE
-    )
+                              settings.AUTH_USER_MODEL,
+                              on_delete=models.CASCADE
+                             )
     transaction_date = models.DateField(
-        _("Transaction Date"),
-        null=False,
-        blank=False)
+                                        _("Transaction Date"),
+                                        null=False,
+                                        blank=False
+                                       )
     accounting_code = models.ForeignKey("AccountingCode",
                                         on_delete=models.CASCADE)
     customer = models.ForeignKey("customers.customer",
                                  on_delete=models.SET_NULL, null=True)
-    description = models.CharField(max_length=200)
+    description = models.CharField(max_length=200, null=False, blank=False)
     rate = models.DecimalField(max_digits=5, decimal_places=2)
     hours = models.DecimalField(max_digits=3, decimal_places=1)
+    # REF: https://stackoverflow.com/questions/61350975/how-can-i-have-only-positive-decimal-numbers-in-django-using-python
     amount_in = models.DecimalField(
         max_digits=5,
         decimal_places=2,
@@ -31,8 +39,37 @@ class Transaction(models.Model):
         decimal_places=2,
         validators=[validators.MaxValueValidator(Decimal('0'))]
         )
-    amount = models.DecimalField(max_digits=5, decimal_places=2)
-    balance = models.DecimalField(max_digits=8, decimal_places=2)
+    amount = models.DecimalField(
+        max_digits=5,
+        decimal_places=2,
+        null=False,
+        editable=False
+        )
+
+    def _generate_trans_number(self):
+        """
+        Generate a random, unique transaction number
+        """
+        return uuid.uuid4().hex.upper()
+
+    def save(self, *args, **kwargs):
+        """
+        Overwrite default save method to
+        add a unique transaction number
+        and update the amount field
+        """
+        if not self.transaction_uuid:
+            self.transaction_uuid = self._generate_trans_number()
+
+        if self.amount_in:
+            self.amount = self.amount_in
+        else:
+            self.amount = self.amount_out
+
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.transaction_uuid
 
 
 class AccountingCode(models.Model):
@@ -46,3 +83,6 @@ class AccountingCode(models.Model):
     # REF: https://stackoverflow.com/questions/47082753/how-to-make-field-unique-for-current-user-django
     class Meta:
         unique_together = ('owner', 'code')
+
+    def __str__(self):
+        return f'{self.code} - {self.description}'
