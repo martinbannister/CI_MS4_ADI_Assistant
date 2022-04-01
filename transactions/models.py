@@ -40,5 +40,9 @@ class AccountingCode(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE
     )
-    code = models.SmallIntegerField(unique=True)
+    code = models.SmallIntegerField()
     description = models.CharField(max_length=100)
+
+    # REF: https://stackoverflow.com/questions/47082753/how-to-make-field-unique-for-current-user-django
+    class Meta:
+        unique_together = ('owner', 'code')
