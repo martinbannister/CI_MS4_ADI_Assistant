@@ -1,6 +1,7 @@
+<!doctype html>
+
 {% load static %}
 
-<!doctype html>
 <html lang="en">
   <head>
     {% block meta %}
@@ -18,6 +19,7 @@
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet">
+      <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endblock core_css %}
 
     {% block extra_css %}
