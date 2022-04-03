@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Accounting Codes{% endblock title %}
+
+{% block page_header %}
+    <div class="container header_container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <td>Code</td>
+                <td>Description</td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for code in accoutningcode_list %}
+                <tr>
+                    <td>{{ code.code }}</td>
+                    <td>{{ code.description }}</td>
+                    <td>
+                        <a href="#" class="btn btn-outline-success">Edit</a>
+                        <a href="#" class="btn btn-outline-danger">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}
