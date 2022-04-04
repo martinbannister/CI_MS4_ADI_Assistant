@@ -4,27 +4,33 @@ from .views import (
     AccountingCodeListView,
     AccoutingCodeDetailView,
     AccoutingCodeEditView,
-    AccoutingCodeDeleteView
+    AccoutingCodeDeleteView,
+    AccountingCodeCreateView,
     )
 
 urlpatterns = [
     path(
-        '<int:pk>/',
+        'codes/<int:pk>/',
         AccoutingCodeDetailView.as_view(),
         name='acc_code_detail'
         ),
     path(
-        '<int:pk>/edit/',
+        'codes/<int:pk>/edit/',
         AccoutingCodeEditView.as_view(),
         name='acc_code_edit'
     ),
     path(
-        '<int:pk>/delete',
+        'codes/<int:pk>/delete/',
         AccoutingCodeDeleteView.as_view(),
         name='acc_code_delete'
     ),
     path(
-        "accountscodes/",
+        'codes/new/',
+        AccountingCodeCreateView.as_view(),
+        name='acc_code_create'
+    ),
+    path(
+        "codes/",
         AccountingCodeListView.as_view(),
         name='acc_code_list'
         ),
