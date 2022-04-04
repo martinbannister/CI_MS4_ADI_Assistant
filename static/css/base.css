@@ -1,6 +1,42 @@
 /* _ (underscore) is used in my defined class names
     to distinguish between those an Bootstrap's classes */
 
+body {
+    font-family: 'Quicksand', sans-serif;
+}
+
+/* Material Design Icon Sizing */
+.material-icons.md-10 { font-size: 10px; }
+.material-icons.md-12 { font-size: 12px; }
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
 .header_container {
     padding-top: 100px;
 }
+
+/* Inspired by Google Material You design */
+.fab {
+    width: 55px;
+    height: 55px;
+    border-radius: 16px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 32px;
+    background-color: var(--bs-yellow);
+    color: #000;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    text-decoration: none;
+    box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.14),0px 2px 1px -1px rgba(0,0,0,0.12),0px 1px 3px 0px rgba(0,0,0,0.2);
+    z-index: 100;
+  }
+
+  .fab:hover {
+    background-color: var(--primary-color);
+    box-shadow: 0 2px 3px 0 rgba(60,64,67,0.3),0 6px 10px 4px rgba(60,64,67,0.15);
+  }
