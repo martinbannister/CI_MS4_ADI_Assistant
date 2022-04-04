@@ -25,8 +25,8 @@
                     <td>{{ code.code }}</td>
                     <td>{{ code.description }}</td>
                     <td>
-                        <a href="#" class="btn btn-outline-success">Edit</a>
-                        <a href="#" class="btn btn-outline-danger">Delete</a>
+                        <a href="{% url 'acc_code_edit' object.pk %}" class="btn btn-outline-success">Edit</a>
+                        <a href="{% url 'acc_code_delete' object.pk %}" class="btn btn-outline-danger">Delete</a>
                     </td>
                 </tr>
             {% endfor %}
