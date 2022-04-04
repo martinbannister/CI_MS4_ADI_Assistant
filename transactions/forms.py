@@ -2,6 +2,15 @@ from django import forms
 from .models import Transaction
 
 
+class BlankSelect(forms.Select):
+    # REF:: https://docs.djangoproject.com/en/3.2/ref/forms/fields/#iterating-relationship-choices-1
+    def create_option(self, name, value, label, selected, index, subindex=None, attrs=None):
+        option = super().create_option(name, value, label, selected, index, subindex, attrs)
+        if not value:
+            option['label'] = f"Select {option['name'].replace('_', ' ').title()}"
+        return option
+
+
 class TransactionForm(forms.ModelForm):
     class Meta:
         model = Transaction
@@ -15,6 +24,10 @@ class TransactionForm(forms.ModelForm):
             'amount_in',
             'amount_out',
         )
+        widgets = {
+            'accounting_code': BlankSelect,
+            'customer': BlankSelect
+        }
 
     def __init__(self, *args, **kwargs):
         """
