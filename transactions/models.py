@@ -73,7 +73,7 @@ class Transaction(models.Model):
         return self.transaction_uuid
 
     def get_absolute_url(self):
-        return reverse("transaction_detail", kwargs={"pk": self.pk})
+        return reverse("trans_detail", kwargs={"pk": self.pk})
 
 
 class AccountingCode(models.Model):
