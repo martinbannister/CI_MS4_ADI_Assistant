@@ -1,13 +1,21 @@
 {% extends 'base.html' %}
 
+{% block page_header %}
+    <div class="container header_container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
 {% block content %}
     <div>
         <h2>{{ object.code }}</h2>
-        <p>{{ object.name }}</p>
+        <p>{{ object.description }}</p>
     </div>
     <a href="{% url 'acc_code_edit' object.pk %}" class="btn btn-outline-success">Edit</a>
     <a href="{% url 'acc_code_delete' object.pk %}" class="btn btn-outline-danger">Delete</a>
-    <p>
+    <p class="pt-2">
         Back to <a href="{% url 'acc_code_list' %}">codes list</a>.
     </p>
 {% endblock content %}
