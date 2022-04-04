@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block page_header %}
+    <div class="container header_container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <h1>New Transaction</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-success ml-2">Save</button>
+        <a href="{% url 'trans_list' %}" class="btn btn-outline-warning">Cancel</a>
+    </form>
+{% endblock content %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block page_header %}
+    <div class="container header_container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div>
+        <p>{{ object.transaction_uuid }}</p>
+        <p>{{ object.transaction_date }}</p>
+        <p>{{ object.accounting_code }}</p>
+        <p>{{ object.customer }}</p>
+        <p>{{ object.description }}</p>
+        <p>{{ object.rate }}</p>
+        <p>{{ object.hours }}</p>
+        <p>{{ object.amount }}</p>
+    </div>
+    <a href="{% url 'trans_edit' object.pk %}" class="btn btn-outline-success">Edit</a>
+    <a href="{% url 'trans_delete' object.pk %}" class="btn btn-outline-danger">Delete</a>
+    <p class="pt-2">
+        Back to <a href="{% url 'trans_list' %}">transactions</a>.
+    </p>
+{% endblock content %}
