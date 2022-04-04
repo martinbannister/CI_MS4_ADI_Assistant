@@ -4,6 +4,7 @@ from django.utils.translation import gettext_lazy as _
 import uuid
 from django.conf import settings
 from django.db import models
+from django.urls import reverse
 
 
 class Transaction(models.Model):
@@ -71,6 +72,9 @@ class Transaction(models.Model):
     def __str__(self):
         return self.transaction_uuid
 
+    def get_absolute_url(self):
+        return reverse("transaction_detail", kwargs={"pk": self.pk})
+
 
 class AccountingCode(models.Model):
     owner = models.ForeignKey(
@@ -86,3 +90,7 @@ class AccountingCode(models.Model):
 
     def __str__(self):
         return f'{self.code} - {self.description}'
+    
+    def get_absolute_url(self):
+        return reverse("acc_code_detail", kwargs={"pk": self.pk})
+    
