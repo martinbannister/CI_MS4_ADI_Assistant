@@ -29,31 +29,68 @@
   </head>
   <body>
     <header class="container-fluid">
-      <nav class="navbar fixed-top navbar-light bg-light">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">ADI Assistant</a>
-          <ul class="nav justify-content-end">
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
-                <span class="material-icons-outlined">account_circle</span> My Account
-              </a>
-              <ul class="dropdown-menu">
-                {% if user.is_authenticated %}
-                    <li>{{ user.username }}</li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="">My Profile</a></li>
-                    <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
-                {% else %}
-                    <li>You are not logged in</li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="{% url 'login' %}">Log In</a></li>
-                    <li><a class="dropdown-item" href="{% url 'signup' %}">Sign Up</a></li>
-                {% endif %}
+          <a class="navbar-brand" href="{% url 'home' %}">ADI Assistant</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <ul class="navbar-nav flex-grow-1">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'dashboard' %}">Dashboard</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Customers</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'trans_list' %}">Transactions</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Settings</a>
+              </li>
+              <ul class="nav ms-auto">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                    <span class="material-icons-outlined">account_circle</span> My Account
+                  </a>
+                  <ul class="dropdown-menu">
+                    {% if user.is_authenticated %}
+                        <li>{{ user.username }}</li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="">My Profile</a></li>
+                        <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
+                    {% else %}
+                        <li>You are not logged in</li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{% url 'login' %}">Log In</a></li>
+                        <li><a class="dropdown-item" href="{% url 'signup' %}">Sign Up</a></li>
+                    {% endif %}
+                  </ul>
+                </li>
               </ul>
-            </li>
-          </ul>
+            </ul>
+          </div>
+          
         </div>
       </nav>
+      <!--
+      <nav class="navbar fixed-top navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{% url 'home' %}">ADI Assistant</a>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'trans_list' %}">Transactions</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    -->
     </header>
 
     {% if messages %}
