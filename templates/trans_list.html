@@ -26,7 +26,7 @@
             </tr>
         </thead>
         <tbody>
-            {% for trans in object_list %}
+            {% for trans in user.transaction_set.all %}
                 <tr>
                     <td><a href="{% url 'trans_detail' trans.pk %}">{{ trans.transaction_uuid }}</a></td>
                     <td>{{ trans.transaction_date }}</td>
