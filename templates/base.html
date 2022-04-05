@@ -38,13 +38,13 @@
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <ul class="navbar-nav flex-grow-1">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'dashboard' %}">Dashboard</a>
+                <a class="nav-link {% ifequal request.path '/dashboard/'%}active{% endifequal%}" {% ifequal request.path '/dashboard/'%}aria-current="page"{% endifequal%} href="{% url 'dashboard' %}">Dashboard</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Customers</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'trans_list' %}">Transactions</a>
+                <a class="nav-link {% ifequal request.path '/transactions/'%}active{% endifequal%}" {% ifequal request.path '/transactions/'%}aria-current="page"{% endifequal%} href="{% url 'trans_list' %}">Transactions</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Settings</a>
