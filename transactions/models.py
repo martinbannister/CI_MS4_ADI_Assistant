@@ -25,20 +25,27 @@ class Transaction(models.Model):
     accounting_code = models.ForeignKey("AccountingCode",
                                         on_delete=models.CASCADE)
     customer = models.ForeignKey("customers.customer",
-                                 on_delete=models.SET_NULL, null=True)
+                                 on_delete=models.SET_NULL,
+                                 null=True, blank=True)
     description = models.CharField(max_length=200, null=False, blank=False)
-    rate = models.DecimalField(max_digits=5, decimal_places=2)
-    hours = models.DecimalField(max_digits=3, decimal_places=1)
+    rate = models.DecimalField(max_digits=5, decimal_places=2,
+                               null=True, blank=True)
+    hours = models.DecimalField(max_digits=3, decimal_places=1,
+                                null=True, blank=True)
     # REF: https://stackoverflow.com/questions/61350975/how-can-i-have-only-positive-decimal-numbers-in-django-using-python
     amount_in = models.DecimalField(
         max_digits=5,
         decimal_places=2,
-        validators=[validators.MinValueValidator(Decimal('0.01'))]
+        validators=[validators.MinValueValidator(Decimal('0.01'))],
+        null=True,
+        blank=True
         )
     amount_out = models.DecimalField(
         max_digits=5,
         decimal_places=2,
-        validators=[validators.MaxValueValidator(Decimal('0'))]
+        validators=[validators.MaxValueValidator(Decimal('0'))],
+        null=True,
+        blank=True
         )
     amount = models.DecimalField(
         max_digits=5,
