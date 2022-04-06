@@ -8,7 +8,11 @@ class BlankSelect(forms.Select):
         option = super().create_option(name, value, label, selected, index, subindex, attrs)
         if not value:
             # REF: https://stackoverflow.com/questions/8347048/how-to-convert-string-to-title-case-in-python#comment-28452851
-            option['label'] = f"Select {option['name'].replace('_', ' ').title()}"
+            label = f"Select {option['name'].replace('_', ' ').title()}"
+            if self.is_required:
+                option['label'] = f'{label}*'
+            else:
+                option['label'] = label
         return option
 
 
