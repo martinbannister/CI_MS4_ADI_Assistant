@@ -62,7 +62,8 @@ class TransactionForm(forms.ModelForm):
                     placeholder = placeholders[field]
                 self.fields[field].widget.attrs['placeholder'] = placeholder
             self.fields[field].widget.attrs['class'] = 'stripe_style_input'
-            self.fields[field].label = False
+            if field != 'transaction_date':
+                self.fields[field].label = False
 
     def clean(self):
         # REF: https://stackoverflow.com/questions/50643395/make-one-field-as-mandatory-in-two-fields-in-django-forms
