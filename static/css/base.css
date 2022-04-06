@@ -1,5 +1,5 @@
 /* _ (underscore) is used in my defined class names
-    to distinguish between those an Bootstrap's classes */
+    to distinguish between those and Bootstrap's classes */
 
 body {
     font-family: 'Quicksand', sans-serif;
@@ -39,4 +39,13 @@ body {
   .fab:hover {
     background-color: var(--primary-color);
     box-shadow: 0 2px 3px 0 rgba(60,64,67,0.3),0 6px 10px 4px rgba(60,64,67,0.15);
+  }
+
+  select, select option {
+      color: #000;
+  }
+
+  select:invalid,
+  select option[value=""] {
+      color: rgba(0, 0, 0, 0.55);
   }
