@@ -16,6 +16,10 @@ class BlankSelect(forms.Select):
         return option
 
 
+class DateInput(forms.DateInput):
+    input_type = 'date'
+
+
 class TransactionForm(forms.ModelForm):
     class Meta:
         model = Transaction
@@ -30,6 +34,7 @@ class TransactionForm(forms.ModelForm):
             'amount_out',
         )
         widgets = {
+            'transaction_date': DateInput(),
             'accounting_code': BlankSelect,
             'customer': BlankSelect
         }
