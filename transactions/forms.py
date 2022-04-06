@@ -41,8 +41,6 @@ class TransactionForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         placeholders = {
             'transaction_date': 'Date',
-            'accounting_code': 'Accouting Code',
-            'customer': 'Customer',
             'description': 'Description',
             'rate': 'Hourly Rate',
             'hours': 'Number of Hours',
@@ -52,11 +50,12 @@ class TransactionForm(forms.ModelForm):
 
         self.fields['transaction_date'].widget.attrs['autofocus'] = True
         for field in self.fields:
-            if self.fields[field].required:
-                placeholder = f'{placeholders[field]} *'
-            else:
-                placeholder = placeholders[field]
-            self.fields[field].widget.attrs['placeholder'] = placeholder
+            if self.fields[field].widget.input_type != 'select':
+                if self.fields[field].required:
+                    placeholder = f'{placeholders[field]}*'
+                else:
+                    placeholder = placeholders[field]
+                self.fields[field].widget.attrs['placeholder'] = placeholder
             self.fields[field].widget.attrs['class'] = 'stripe_style_input'
             self.fields[field].label = False
 
