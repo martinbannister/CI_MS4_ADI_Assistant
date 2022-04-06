@@ -49,3 +49,7 @@ body {
   select option[value=""] {
       color: rgba(0, 0, 0, 0.55);
   }
+
+  input[type="date"]:invalid {
+      color: rgba(0, 0, 0, 0.55);
+  }
