@@ -14,6 +14,7 @@ from .views import (
     )
 
 urlpatterns = [
+    # Accounting Codes
     path(
         'codes/<int:pk>/',
         AccoutingCodeDetailView.as_view(),
