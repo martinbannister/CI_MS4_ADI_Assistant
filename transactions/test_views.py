@@ -72,15 +72,42 @@ class TestTransactionViews(TestCase):
 
 
 class TestAccoutingCodeViews(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        cls.user = get_user_model().objects.create_user(
+            username='testuser',
+            email='test@email.com',
+            password='notasecret',
+            account_type=0
+        )
+
+        cls.accCode = AccountingCode.objects.create(
+            owner=cls.user,
+            code=9999,
+            description='test accounting code'
+        )
 
     def test_get_code_list(self):
-        pass
+        response = self.client.get('/transactions/codes/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'accounting_code_list.html')
 
     def test_get_code_detail(self):
-        pass
+        response = self.client.get(
+            reverse('acc_code_detail', kwargs={'pk': self.accCode.pk})
+        )
+        no_response = self.client.get('/transactions/codes/999999/')
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(no_response.status_code, 404)
+        self.assertContains(response, 'test accounting code')
+        self.assertTemplateUsed(response, 'accouting_code_detail.html')
 
     def test_edit_code_page(self):
-        pass
+        response = self.client.get(
+            reverse('acc_code_edit', kwargs={'pk': self.accCode.pk})
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'accouting_code_edit.html')
 
     def test_delete_code_page(self):
         pass
