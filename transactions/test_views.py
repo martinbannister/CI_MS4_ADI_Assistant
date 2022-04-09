@@ -69,3 +69,21 @@ class TestTransactionViews(TestCase):
 
     def test_delete_trans(self):
         pass
+
+
+class TestAccoutingCodeViews(TestCase):
+
+    def test_get_code_list(self):
+        pass
+
+    def test_get_code_detail(self):
+        pass
+
+    def test_edit_code_page(self):
+        pass
+
+    def test_delete_code_page(self):
+        pass
+
+    def test_code_create_view(sefl):
+        pass
