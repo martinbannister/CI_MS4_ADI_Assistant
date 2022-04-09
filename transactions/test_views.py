@@ -110,7 +110,11 @@ class TestAccoutingCodeViews(TestCase):
         self.assertTemplateUsed(response, 'accouting_code_edit.html')
 
     def test_delete_code_page(self):
-        pass
+        response = self.client.get(
+            reverse('acc_code_delete', kwargs={'pk': self.accCode.pk})
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'accouting_code_delete.html')
 
     def test_code_create_view(sefl):
         pass
