@@ -52,10 +52,10 @@
                 </li>
               {% else %}
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'login' %}">Log In</a>
+                  <a class="nav-link" href="{% url 'account_login' %}">Log In</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
+                  <a class="nav-link" href="{% url 'account_signup' %}">Sign Up</a>
                 </li>
               {% endif %}
               <ul class="nav ms-auto">
@@ -68,12 +68,12 @@
                         <li>{{ user.username }}</li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="">My Profile</a></li>
-                        <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
+                        <li><a class="dropdown-item" href="{% url 'account_logout' %}">Log Out</a></li>
                     {% else %}
                         <li>You are not logged in</li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="{% url 'login' %}">Log In</a></li>
-                        <li><a class="dropdown-item" href="{% url 'signup' %}">Sign Up</a></li>
+                        <li><a class="dropdown-item" href="{% url 'account_login' %}">Log In</a></li>
+                        <li><a class="dropdown-item" href="{% url 'account_signup' %}">Sign Up</a></li>
                     {% endif %}
                   </ul>
                 </li>
