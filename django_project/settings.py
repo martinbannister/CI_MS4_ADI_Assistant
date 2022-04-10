@@ -53,7 +53,8 @@ INSTALLED_APPS = [
     'customers.apps.CustomersConfig',
     'pages',
     'transactions',
-    'payments.apps.PaymentsConfig'
+    'payments.apps.PaymentsConfig',
+    'profiles.apps.ProfilesConfig',
 ]
 
 MIDDLEWARE = [
