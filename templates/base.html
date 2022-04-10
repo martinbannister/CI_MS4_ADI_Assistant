@@ -37,18 +37,27 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <ul class="navbar-nav flex-grow-1">
-              <li class="nav-item">
-                <a class="nav-link {% ifequal request.path '/dashboard/'%}active{% endifequal%}" {% ifequal request.path '/dashboard/'%}aria-current="page"{% endifequal%} href="{% url 'dashboard' %}">Dashboard</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Customers</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link {% ifequal request.path '/transactions/'%}active{% endifequal%}" {% ifequal request.path '/transactions/'%}aria-current="page"{% endifequal%} href="{% url 'trans_list' %}">Transactions</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'settings' %}">Settings</a>
-              </li>
+              {% if user.is_authenticated %}
+                <li class="nav-item">
+                  <a class="nav-link {% ifequal request.path '/dashboard/'%}active{% endifequal%}" {% ifequal request.path '/dashboard/'%}aria-current="page"{% endifequal%} href="{% url 'dashboard' %}">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Customers</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link {% ifequal request.path '/transactions/'%}active{% endifequal%}" {% ifequal request.path '/transactions/'%}aria-current="page"{% endifequal%} href="{% url 'trans_list' %}">Transactions</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'settings' %}">Settings</a>
+                </li>
+              {% else %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'login' %}">Log In</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
+                </li>
+              {% endif %}
               <ul class="nav ms-auto">
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
