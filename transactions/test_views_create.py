@@ -25,21 +25,18 @@ class TestTransactionCreate(TestCase):
     def test_create_trans_postive_amount(self):
         response = self.client.post(
             reverse('trans_create'),
-            data={
+            {
                 'owner': self.user.id,
                 'transaction_date': timezone.now(),
                 'accounting_code': self.accCode.id,
                 'description': 'test create positive transaction',
                 'amount_in': 1,
             },
+            follow=True
         )
         self.assertEqual(response.status_code, 200)
-        new_trans = Transaction.objects.first()
-        self.assertEqual(
-            new_trans.description,
-            'test create positive transaction'
-        )
-        self.assertEqual(new_trans.amount, 1)
+        # REF: https://stackoverflow.com/questions/59810594/is-there-a-way-of-getting-the-response-content-for-a-post-request-in-django-test
+        self.assertContains(response, 'test create positive transaction')
 
     def test_create_trans_no_amount(self):
         response = self.client.post(
@@ -60,22 +57,18 @@ class TestTransactionCreate(TestCase):
         )
 
     def test_create_trans_negative_amount(self):
-        response = self.client.post(
-            reverse('trans_create'),
-            {
-                'owner': self.user.id,
-                'transaction_date': timezone.now(),
-                'accounting_code': self.accCode.id,
-                'description': 'test create negative transaction',
-                'amount_out': -1
-            }
+        trans = Transaction.objects.create(
+            owner=self.user,
+            transaction_date=timezone.now(),
+            accounting_code=self.accCode,
+            description='test create negative transaction',
+            amount_out=-1
         )
-        self.assertEqual(response.status_code, 200)
         self.assertEqual(
-            Transaction.objects.last().description,
+            trans.description,
             'test create negative transaction'
         )
         self.assertEqual(
-            Transaction.objects.last().amount,
+            trans.amount,
             -1
         )
