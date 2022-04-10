@@ -18,9 +18,9 @@ class CustomUserChangeForm(UserChangeForm):
         fields = UserChangeForm.Meta.fields
 
 
-class SignupForm(forms.Form):
-    account_type = forms.CharField()
+# class SignupForm(forms.Form):
+#     account_type = forms.CharField()
 
-    def signup(self, request, user):
-        user.account_type = self.cleaned_data['account_type']
-        user.save()
+#     def signup(self, request, user):
+#         user.account_type = self.cleaned_data['account_type']
+#         user.save()

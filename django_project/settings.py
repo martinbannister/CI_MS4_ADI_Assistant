@@ -73,6 +73,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             str(BASE_DIR.joinpath('templates')),
+            str(BASE_DIR.joinpath('templates', 'allauth')),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -114,7 +115,7 @@ ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
-ACCOUNT_SIGNUP_FORM_CLASS = 'accounts.forms.SignupForm'
+# ACCOUNT_SIGNUP_FORM_CLASS = 'accounts.forms.SignupForm'
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/dashboard/'
