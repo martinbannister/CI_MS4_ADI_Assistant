@@ -64,12 +64,6 @@ class TestTransactionViews(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'trans_create.html')
 
-    def test_edit_trans(self):
-        pass
-
-    def test_delete_trans(self):
-        pass
-
 
 class TestAccoutingCodeViews(TestCase):
     @classmethod
@@ -116,5 +110,7 @@ class TestAccoutingCodeViews(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'accouting_code_delete.html')
 
-    def test_code_create_view(sefl):
-        pass
+    def test_code_create_view(self):
+        response = self.client.get('/transactions/codes/new/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'accounting_code_create.html')
