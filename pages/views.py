@@ -7,3 +7,7 @@ class DashboardView(TemplateView):
 
 class IndexView(TemplateView):
     template_name = 'index.html'
+
+
+class SettingsView(TemplateView):
+    template_name = 'settings.html'
