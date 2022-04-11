@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block page_header %}
+    <div class="container header_container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <h1>Delete Customer</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <p>Are you sure you want to delete "{{ object.firstname }} {{ object.lastname }}"?</p>
+        <button class="btn btn-danger ml-2" type="submit">Confirm</button>
+        <a href="{% url 'customer_list' %}" class="btn btn-outline-warning">Cancel</a>
+    </form>
+{% endblock content %}

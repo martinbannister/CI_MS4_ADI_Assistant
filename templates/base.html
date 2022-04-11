@@ -43,13 +43,16 @@
                   <a class="nav-link {% ifequal request.path '/dashboard/'%}active{% endifequal%}" {% ifequal request.path '/dashboard/'%}aria-current="page"{% endifequal%} href="{% url 'dashboard' %}">Dashboard</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Customers</a>
+                  <a class="nav-link {% ifequal request.path '/customers/'%}active{% endifequal%}" {% ifequal request.path '/customers/'%}aria-current="page"{% endifequal%} href="{% url 'customer_list' %}">Customers</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link {% ifequal request.path '/transactions/'%}active{% endifequal%}" {% ifequal request.path '/transactions/'%}aria-current="page"{% endifequal%} href="{% url 'trans_list' %}">Transactions</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'settings' %}">Settings</a>
+                  <a class="nav-link {% ifequal request.path '/profile/'%}active{% endifequal%}" {% ifequal request.path '/profile/'%}aria-current="page"{% endifequal%} href="{% url 'profile' %}">Profile</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link {% ifequal request.path '/settings/'%}active{% endifequal%}" {% ifequal request.path '/settings/'%}aria-current="page"{% endifequal%} href="{% url 'settings' %}">Settings</a>
                 </li>
               {% else %}
                 <li class="nav-item">
@@ -68,7 +71,7 @@
                     {% if user.is_authenticated %}
                         <li>{{ user.username }}</li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="">My Profile</a></li>
+                        <li><a class="dropdown-item" href="{% url 'profile' %}">My Profile</a></li>
                         <li><a class="dropdown-item" href="{% url 'account_logout' %}">Log Out</a></li>
                     {% else %}
                         <li>You are not logged in</li>
