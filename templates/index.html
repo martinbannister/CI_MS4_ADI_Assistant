@@ -11,11 +11,31 @@
 
 {% block content %}
     {% if user.is_authenticated %}
-        Hi {{ user.username }}!
-        <p><a href="{% url 'account_logout' %}">Log Out</a></p>
+        Hi {{ user.firstname }}!
+        {% if subscription.status == "active" %}
+            <h4>Your subscription:</h4>
+            <div class="card" style="p-5">
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">
+                        {{ product.description }}
+                    </p>
+                    <a class="btn btn-danger text-light mt-2" href="/subscriptions/cancel">Cancel Subscription</a>
+                </div>
+            </div>
+        {% else %}
+            <p>Your subscription is {{ subscription.status }}</p>
+            <p>
+                <a href="{% url 'checkout' %}" class="btn btn-primary" id="submitBtn">Subscribe</a>
+            </p>
+        {% endif %}
+      
+        <p class="mt-5">
+            <a href="{% url 'account_logout' %}" class="btn btn-secondary">Log Out</a>
+        </p>
     {% else %}
         <p>You are not logged in</p>
-        <a href="{% url 'account_login' %}">Log In</a> |
-        <a href="{% url 'account_signup' %}">Sign Up</a>
+        <a href="{% url 'account_login' %}" class="btn btn-primary">Log In</a> |
+        <a href="{% url 'account_signup' %}" class="btn btn-success">Sign Up</a>
     {% endif %}
 {% endblock content %}
