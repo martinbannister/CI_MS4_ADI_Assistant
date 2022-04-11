@@ -31,7 +31,7 @@ DEBUG = config('DEBUG',default=False, cast=bool)
 
 ALLOWED_HOSTS = [
     'ci-ms4-adi-assistant',
-    '127.0.0.1:8000'
+    '127.0.0.1'
 ]
 
 
@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap5',
     'djstripe',
+    'storages',
     # Local
     'accounts.apps.AccountsConfig',
     'customers.apps.CustomersConfig',
@@ -185,6 +186,21 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     str(BASE_DIR.joinpath('static')),
     ]
+
+if 'USE_AWS' in os.environ:
+    # bucket config
+    AWS_STORAGE_BUCKET_NAME = 'ci-ms4-adi-assistant'
+    AWS_S3_REGION_NAME = 'eu-west-2'
+    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+
+    # Static Files
+    STATICFILES_STORAGE = 'customer_storages.StaticStorage'
+    STATICFILES_LOCATION = 'static'
+
+    # Override static URLs in production
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
