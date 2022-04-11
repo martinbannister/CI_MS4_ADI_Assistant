@@ -51,8 +51,8 @@ INSTALLED_APPS = [
     # Local
     'accounts.apps.AccountsConfig',
     'customers.apps.CustomersConfig',
-    'pages',
-    'transactions',
+    'pages.apps.PagesConfig',
+    'transactions.apps.TransactionsConfig',
     'payments.apps.PaymentsConfig',
     'profiles.apps.ProfilesConfig',
 ]
