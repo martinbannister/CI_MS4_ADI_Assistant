@@ -156,7 +156,7 @@
                         price_id: document.getElementById("priceId").innerHTML,
                         payment_method: result.paymentMethod.id,
                     };
-                    fetch("/create-sub", {
+                    fetch("/subscriptions/create-subscription/", {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -174,7 +174,7 @@
                         return result;
                     }).then((result) => {
                         if (result && result.status === 'active') {
-                        window.location.href = '/complete';
+                        window.location.href = '/subscriptions/complete/';
                         };
                     }).catch(function (error) {
                         displayError(result.error.message);
