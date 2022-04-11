@@ -1,6 +1,6 @@
 import stripe
 from django.views.generic import TemplateView
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 from django.conf import settings
 
 from profiles.models import UserProfile
@@ -8,10 +8,6 @@ from profiles.models import UserProfile
 
 class DashboardView(TemplateView):
     template_name = 'dashboard.html'
-
-
-class IndexView(TemplateView):
-    template_name = 'index.html'
 
 
 def index_view(request):
