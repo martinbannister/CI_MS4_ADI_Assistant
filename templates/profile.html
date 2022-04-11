@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page_header %}
+    <div class="container header_container">
+        <div class="row">
+            <div class="col">
+                {% if user.is_authenticated %}
+                    <h1 class="text-secondary">Your Profile</h1>
+                {% else %}
+                    <h1>Welcome to ADI Assistant</h1>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <h2 class="mt-4">Hi {{ user.first_name }}</h2>
+        {% if subscription.status == "active" %}
+            <h4>Your subscription:</h4>
+            <div class="card" style="p-5">
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">
+                        {{ product.description }}
+                    </p>
+                    <a class="btn btn-danger text-light mt-2" href="/subscriptions/cancel">Cancel Subscription</a>
+                </div>
+            </div>
+        {% else %}
+            <p>Your subscription is {{ subscription.status }}</p>
+            <p>
+                <a href="{% url 'checkout' %}" class="btn btn-primary" id="submitBtn">Subscribe</a>
+            </p>
+        {% endif %}
+      
+        <p class="mt-5">
+            <a href="{% url 'account_logout' %}" class="btn btn-secondary">Log Out</a>
+        </p>
+    {% else %}
+        <p>You are not logged in</p>
+        <a href="{% url 'account_login' %}" class="btn btn-primary">Log In</a> |
+        <a href="{% url 'account_signup' %}" class="btn btn-success">Sign Up</a>
+    {% endif %}
+{% endblock content %}
