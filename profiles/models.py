@@ -11,11 +11,12 @@ class UserProfile(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE
     )
-    stripeCustomerId = models.CharField(max_length=255)
+    stripeCustomerId = models.CharField(max_length=255, null=True, blank=True)
     stripeCustomer = models.ForeignKey(
         Customer, null=True, blank=True, on_delete=models.SET_NULL
     )
-    stripeSubscriptionId = models.CharField(max_length=255)
+    stripeSubscriptionId = models.CharField(max_length=255, null=True,
+                                            blank=True)
     stripeSubscription = models.ForeignKey(
         Subscription, null=True, blank=True, on_delete=models.SET_NULL
     )
