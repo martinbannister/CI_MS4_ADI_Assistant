@@ -188,6 +188,12 @@ STATICFILES_DIRS = [
     ]
 
 if 'USE_AWS' in os.environ:
+    # Cache control
+    AWS_S3_OBJECT_PARAMETERS = {
+        'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+        'CacheControl': 'max-age=94608000',
+    }
+    
     # bucket config
     AWS_STORAGE_BUCKET_NAME = 'ci-ms4-adi-assistant'
     AWS_S3_REGION_NAME = 'eu-west-2'
