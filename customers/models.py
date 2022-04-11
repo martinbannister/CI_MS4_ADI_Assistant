@@ -1,6 +1,7 @@
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
 from django.conf import settings
+from django.urls import reverse
 from django.db import models
 from datetime import date
 
@@ -35,6 +36,9 @@ class Customer(models.Model):
     def __str__(self):
         """String for representing the Customer Model object."""
         return f'{self.firstname} {self.lastname}'
+
+    def get_absolute_url(self):
+        return reverse("customer_detail", kwargs={"pk": self.pk})
 
 
 class SubjectCategory(models.Model):
