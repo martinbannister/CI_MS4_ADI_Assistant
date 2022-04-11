@@ -4,14 +4,20 @@
 {% block page_header %}
     <div class="container header_container">
         <div class="row">
-            <div class="col"></div>
+            <div class="col">
+                {% if user.is_authenticated %}
+                    <h1 class="text-secondary">Your Profile</h1>
+                {% else %}
+                    <h1>Welcome to ADI Assistant</h1>
+                {% endif %}
+            </div>
         </div>
     </div>
 {% endblock %}
 
 {% block content %}
     {% if user.is_authenticated %}
-        Hi {{ user.firstname }}!
+        <h2 class="mt-4">Hi {{ user.first_name }}</h2>
         {% if subscription.status == "active" %}
             <h4>Your subscription:</h4>
             <div class="card" style="p-5">
