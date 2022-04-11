@@ -79,6 +79,7 @@ def complete(request):
     return render(request, "payment_complete.html")
 
 
+@login_required
 def cancel(request):
     if request.user.is_authenticated:
         sub_id = request.user.userprofile.stripeSubscription.id
