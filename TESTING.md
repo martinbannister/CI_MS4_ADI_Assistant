@@ -41,3 +41,9 @@ The author used [PEP8 Online](http://pep8online.com/) to check the python code f
 The author used [JSHint](https://jshint.com/) to verify the javascript used in the site.  
 
 ![jshint image](docs/images/jshint.png)
+
+### User Testing
+
+To save time a single video has been used to show the user testing in operation.
+
+![testing video](docs/images/user_testing_CUR_signin.mp4)
