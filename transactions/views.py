@@ -1,3 +1,5 @@
+import stripe
+from django.conf import settings
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import UpdateView, DeleteView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -5,6 +7,7 @@ from django.urls import reverse_lazy
 
 from .models import Transaction, AccountingCode
 from .forms import TransactionForm
+from profiles.models import UserProfile
 
 
 class AccountingCodeListView(LoginRequiredMixin, ListView):
@@ -51,6 +54,22 @@ class AccountingCodeCreateView(LoginRequiredMixin, CreateView):
 class TransactionListView(LoginRequiredMixin, ListView):
     model = Transaction
     template_name = 'trans_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = UserProfile.objects.get(user=self.request.user)
+        if user.stripeSubscriptionId:
+            stripe.api_key = settings.STRIPE_TEST_SECRET_KEY
+            subscription = stripe.Subscription.retrieve(
+                user.stripeSubscriptionId
+            )
+            if subscription:
+                context["has_sub"] = True
+            else:
+                context["has_sub"] = False
+        else:
+            context["has_sub"] = False
+        return context
 
 
 class TransactionDetailView(LoginRequiredMixin, DetailView):

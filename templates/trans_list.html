@@ -5,7 +5,16 @@
 {% block page_header %}
     <div class="container header_container">
         <div class="row">
-            <div class="col"></div>
+            <div class="col">
+                {% if not has_sub %}
+                    <h2>
+                        Your do not have an active subscription.
+                    </h2>
+                    <p>
+                        To add transactions, please <a href="{% url 'checkout' %}">subscribe</a>.
+                    </p>
+                {% endif %}
+            </div>
         </div>
     </div>
 {% endblock %}
@@ -44,7 +53,10 @@
             {% endfor %}
         </tbody>
     </table>
+    {% comment %} Only show add button if user has a current subscription {% endcomment %}
     {% if user.is_authenticated %}
-        <a href="{% url 'trans_create' %}" class="fab">+</a>
+        {% if has_sub %}
+            <a href="{% url 'trans_create' %}" class="fab">+</a>
+        {% endif %}
     {% endif %}
 {% endblock content %}
