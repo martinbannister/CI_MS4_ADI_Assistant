@@ -190,6 +190,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     str(BASE_DIR.joinpath('static')),
     ]
+# https://stackoverflow.com/questions/48455469/youre-using-the-staticfiles-app-without-having-set-the-static-root-setting-to-a
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 if 'USE_AWS' in os.environ:
     # Cache control
