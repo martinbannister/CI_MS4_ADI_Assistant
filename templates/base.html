@@ -40,19 +40,19 @@
             <ul class="navbar-nav flex-grow-1">
               {% if user.is_authenticated %}
                 <li class="nav-item">
-                  <a class="nav-link {% ifequal request.path '/dashboard/'%}active{% endifequal%}" {% ifequal request.path '/dashboard/'%}aria-current="page"{% endifequal%} href="{% url 'dashboard' %}">Dashboard</a>
+                  <a class="nav-link {% if request.path == '/dashboard/'%}active{% endif %}" {% if request.path == '/dashboard/'%}aria-current="page"{% endif %} href="{% url 'dashboard' %}">Dashboard</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link {% ifequal request.path '/customers/'%}active{% endifequal%}" {% ifequal request.path '/customers/'%}aria-current="page"{% endifequal%} href="{% url 'customer_list' %}">Customers</a>
+                  <a class="nav-link {% if request.path == '/customers/'%}active{% endif %}" {% if request.path == '/customers/'%}aria-current="page"{% endif %} href="{% url 'customer_list' %}">Customers</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link {% ifequal request.path '/transactions/'%}active{% endifequal%}" {% ifequal request.path '/transactions/'%}aria-current="page"{% endifequal%} href="{% url 'trans_list' %}">Transactions</a>
+                  <a class="nav-link {% if request.path == '/transactions/'%}active{% endif %}" {% if request.path == '/transactions/'%}aria-current="page"{% endif %} href="{% url 'trans_list' %}">Transactions</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link {% ifequal request.path '/profile/'%}active{% endifequal%}" {% ifequal request.path '/profile/'%}aria-current="page"{% endifequal%} href="{% url 'profile' %}">Profile</a>
+                  <a class="nav-link {% if request.path == '/profile/'%}active{% endif %}" {% if request.path == '/profile/'%}aria-current="page"{% endif %} href="{% url 'profile' %}">Profile</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link {% ifequal request.path '/settings/'%}active{% endifequal%}" {% ifequal request.path '/settings/'%}aria-current="page"{% endifequal%} href="{% url 'settings' %}">Settings</a>
+                  <a class="nav-link {% if request.path == '/settings/'%}active{% endif %}" {% if request.path == '/settings/'%}aria-current="page"{% endif %} href="{% url 'settings' %}">Settings</a>
                 </li>
               {% else %}
                 <li class="nav-item">
